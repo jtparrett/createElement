@@ -25,10 +25,10 @@ let state = 0
 
 const Wow = ({text}) => (
   <div>
-    {(node) => {
+    {(parent) => {
      
       const onClick = (e) => {
-        node.replaceWith(<Wow text={++state} />)
+        parent.replaceWith(<Wow text={++state} />)
       }
 
       return (
@@ -38,11 +38,23 @@ const Wow = ({text}) => (
   </div>
 )
 
+const Thing = () => (parent) => {
+  const render = (e) => {
+    e.target.replaceWith(<Thing />())
+  }
+
+  return (
+    <h2 onClick={render}>{new Date().getTime()}</h2>
+  )
+}
+
 const App = () => (
   <div>
     <Wow text={state} />
     <p>Hello world</p>
     <div>
+      <Thing />
+
       <div>
         <h2>Test</h2>
         <h3>This is a h3</h3>
