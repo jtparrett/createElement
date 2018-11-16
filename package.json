@@ -1,0 +1,21 @@
+{
+  "name": "raw-js-view",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "watchify index.js -o dist.js -t [babelify]",
+    "serve": "http-server"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "2.0.0-alpha.20",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
+    "http-server": "^0.11.1",
+    "watchify": "^3.11.0"
+  },
+  "dependencies": {}
+}
