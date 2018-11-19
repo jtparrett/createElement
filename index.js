@@ -8,31 +8,34 @@ const Data = ({data = []}) => (
   </div>
 )
 
-const Query = () => (
+const Query = ({title}) => (
   <div>
-    {(node) => {
+    {(data = [], setData) => {
       setTimeout(() => {
-        node.replaceWith(<Data data={[1, 2, 3]} />)
+        setData([1, 2, 3])
       }, 3000)
 
-      return (<p>Loading...</p>)
+      if(data.length <= 0){
+        return (<p>Loading...</p>)
+      }
+
+      return (<Data data={data} />)
     }}
   </div>
 )
 
 
-let state = 0
-
-const Wow = ({text}) => (
+const Wow = ({count}) => (
   <div>
-    {(parent) => {
-     
+    {(state = {count}, setState) => {     
       const onClick = (e) => {
-        parent.replaceWith(<Wow text={++state} />)
+        setState({
+          count: ++count
+        })
       }
 
       return (
-        <h1 onClick={onClick}>{text}</h1>
+        <h1 onClick={onClick}>{state.count}</h1>
       )
     }}
   </div>
@@ -50,7 +53,7 @@ const Thing = () => (parent) => {
 
 const App = () => (
   <div>
-    <Wow text={state} />
+    <Wow count={0} />
     <p>Hello world</p>
     <div>
       <Thing />
