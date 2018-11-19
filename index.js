@@ -50,6 +50,16 @@ const Thing = () => (time = 'getting time...', setTime) => {
   )
 }
 
+const TopLevelStateComponent = (state, setState) => {
+  const onClick = () => {
+    setState(!state)
+  }
+
+  return (
+    <p onClick={onClick}>Top level state {state && 'nice!'}</p>
+  )
+}
+
 const App = () => (
   <div>
     <Wow count={0} />
@@ -65,6 +75,18 @@ const App = () => (
         <p>{i}</p>
       ))}
     </div>
+
+    {TopLevelStateComponent}
+
+    {(state, setState) => {
+      const onClick = () => {
+        setState(!state)
+      }
+
+      return (
+        <p onClick={onClick}>Inline state, how can this be? {state && 'wow!'}</p>
+      )
+    }}
 
     <Thing />
 

@@ -1,5 +1,9 @@
 const appendChildren = (children, node) => {
   children.forEach(child => {
+    if(child === undefined || typeof child === 'boolean'){
+      return false
+    }
+
     if(typeof child === 'function'){
       const setState = (value) => {
         const newChildNode = child(value, setState)
@@ -10,10 +14,6 @@ const appendChildren = (children, node) => {
       let childNode = child(undefined, setState)
       node.appendChild(childNode)
 
-      return false
-    }
-
-    if(child === undefined || typeof child === 'boolean'){
       return false
     }
 
