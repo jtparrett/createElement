@@ -30,26 +30,31 @@ const Query = ({title}) => (
 )
 
 
-const Wow = ({count}) => (
-  <div>
-    {(state = {count}, setState) => {     
-      const onClick = (e) => {
-        setState({
-          count: ++count
-        })
-      }
+const Wow = ({count}) => (state = {count}, setState) => {     
+  const onClick = (e) => {
+    setState({
+      count: ++count
+    })
+  }
 
-      return (
-        <h1 onClick={onClick}>{state.count}</h1>
-      )
-    }}
-  </div>
-)
+  return (
+    <h1 onClick={onClick}>{state.count}</h1>
+  )
+}
+
+const Thing = () => (time = 'getting time...', setTime) => {  
+  setTimeout(setTime, 2000, new Date().getTime())
+
+  return (
+    <h1 style="color: red">{time}</h1>
+  )
+}
 
 const App = () => (
   <div>
     <Wow count={0} />
     <p>Hello world</p>
+
     <div>
       <div>
         <h2>Test</h2>
@@ -60,6 +65,8 @@ const App = () => (
         <p>{i}</p>
       ))}
     </div>
+
+    <Thing />
 
     <Query title="Test" />
   </div>

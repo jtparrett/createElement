@@ -2,11 +2,13 @@ const appendChildren = (children, node) => {
   children.forEach(child => {
     if(typeof child === 'function'){
       const setState = (value) => {
-        node.innerHTML = ''
-        node.appendChild(child(value, setState))
+        const newChildNode = child(value, setState)
+        node.replaceChild(newChildNode, childNode)
+        childNode = newChildNode
       }
 
-      setState(undefined, setState)
+      let childNode = child(undefined, setState)
+      node.appendChild(childNode)
 
       return false
     }
