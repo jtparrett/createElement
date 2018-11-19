@@ -10,16 +10,21 @@ const Data = ({data = []}) => (
 
 const Query = ({title}) => (
   <div>
-    {(data = [], setData) => {
-      setTimeout(() => {
-        setData([1, 2, 3])
-      }, 3000)
+    {(data, setData) => {
+      if(!data){
+        setTimeout(() => { // could be an async API call?
+          setData([1, 2, 3])
+        }, 3000)
 
-      if(data.length <= 0){
         return (<p>Loading...</p>)
       }
 
-      return (<Data data={data} />)
+      return (
+        <div>
+          <p>{title}</p>
+          <Data data={data} />
+        </div>
+      )
     }}
   </div>
 )
@@ -41,23 +46,11 @@ const Wow = ({count}) => (
   </div>
 )
 
-const Thing = () => (parent) => {
-  const render = (e) => {
-    e.target.replaceWith(<Thing />())
-  }
-
-  return (
-    <h2 onClick={render}>{new Date().getTime()}</h2>
-  )
-}
-
 const App = () => (
   <div>
     <Wow count={0} />
     <p>Hello world</p>
     <div>
-      <Thing />
-
       <div>
         <h2>Test</h2>
         <h3>This is a h3</h3>
