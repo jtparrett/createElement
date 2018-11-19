@@ -45,10 +45,6 @@ const createElement = (component, props, ...children) => {
   }
 
   Object.entries(props).forEach(([key, value]) => {
-    if(key === 'onDidMount'){
-      value(node, props, children)
-    }
-
     if(key.indexOf('on') === 0){
       const eventName = key.replace('on', '').toLowerCase()
       node.addEventListener(eventName, value)
